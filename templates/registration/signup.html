@@ -1,0 +1,106 @@
+{% extends 'base.html' %} 
+{% load crispy_forms_tags %}  
+
+{% block breadcrumb %}
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+</ol>
+{% endblock breadcrumb%} {% block content %} 
+
+{% if form.errors %}
+<div class="alert alert-danger">
+    <strong>Error:</strong>
+    <ul>
+    {% for field, errors in form.errors.items %}
+        {% for error in errors %}
+        <li>{{ field }}: {{ error }}</li>
+        {% endfor %}
+    {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+<div class="row">
+    <div class="col-lg-6">
+        <!-- START card -->
+        <div class="card card-default">
+        <div class="card-header ">
+            <div class="card-title">
+            New Product
+            </div>
+        </div>
+        <div class="card-body">
+            <h4>Add A New Product</h4>
+            <p class="m-t-10 m-b-20 mw-80"></p>
+            <form role="form" method="post" enctype='multipart/form-data' action=" {% url 'register' %} ">
+            {% comment %} <form role="form" method="post"> {% endcomment %}
+            {% csrf_token %}
+            <div class="row clearfix">
+                <div class="col-xl-6">
+
+                <div class="form-group">
+
+                    {{ form.first_name|as_crispy_field }}
+                </div>
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form.middle_name|as_crispy_field }}
+            </div>
+            <div class="form-group">
+                <div class="input-group bootstrap-timepicker">
+                {{ form.last_name|as_crispy_field }}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form.email|as_crispy_field }}
+            </div>
+            <div class="form-group">
+                {{ form.phone_number|as_crispy_field }}
+            </div>
+            <div class="form-group">
+                {{ form.gender|as_crispy_field }}
+            </div>
+            <div class="form-group">
+                {{ form.year_of_growth_track_completion|as_crispy_field }}
+            </div>
+            <div class="form-group">
+                {{ form.contact_address|as_crispy_field }}
+            </div>
+            <div class="form-group">
+                {{ form.age_range|as_crispy_field }}
+            </div>
+            <div class="form-group">
+                {{ form.marital_status|as_crispy_field }}
+            </div>
+            <div class="form-group">
+                {{ form.centre|as_crispy_field }}
+            </div>
+            <div class="form-group">
+                {{ form.service_team|as_crispy_field }}
+            </div>
+            <div class="form-group">
+                {{ form.home_cell_group|as_crispy_field }}
+            </div>
+            <div class="form-group">
+                {{ form.cell_church_colony|as_crispy_field }}
+            </div>
+            <div class="form-group">
+                {{ form.passport_photo|as_crispy_field }}
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary btn-cons" type="submit">Add</button>
+            </div>
+
+            </form>
+        </div>
+        </div>
+        <!-- END card -->
+    </div>
+    <div class="col-xl-6 col-lg-6 ">
+        <!-- START card -->
+
+        <!-- END card -->
+    </div>
+</div>
+{% endblock content %}
